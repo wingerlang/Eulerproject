@@ -29,15 +29,21 @@ The product of these numbers is 26  63  78  14 = 1788696.
 
 What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 2 20 grid?
 """
+# Create a default grid (2D array)
+def grid(width = 5, height = 5):
+    return [ [x for x in range(width)] for y in range(height) ]
 
 # Calculate product in a list
-def product(L, total = 1):
+def product(L):
+    tot = 1
     for el in L:
-        total *= el
-    return total
+        tot *= el
+    return tot
 # 
-def xRow(subL, steps = 4, highest = 0):
-    for counter in range(len(subL)):
+def xRow(subL, steps = 4):
+    print("List: " + str(subL))
+    highest = 0
+    for counter in range( len(subL) ):
         rowProduct = product(subL[counter: counter+steps])
         if rowProduct >= highest:
             highest = rowProduct
@@ -49,20 +55,10 @@ def allYrows(L):
         templist = []
         for x in range(len(L)):
             templist.append(board[x][y])
-
         total = xRow(templist)
         if total >= best:
             best = total
         print(total, xRow(templist))
-    return best
-
-def allXrows(L):
-    best = 0
-    for row in L:
-        rowHighest = xRow(row)
-        if rowHighest >= best:
-            best =rowHighest
-        print(row, rowHighest)
     return best
 
 def diagonal(L, best = 0, step = 4):
@@ -80,16 +76,17 @@ def diagonal(L, best = 0, step = 4):
             if product(templist) >= best:
                 best = product(templist)
             print(row, templist)
-    print("TOTAL ITERATIONS", interations)
+    print("TOTAL INTERATIONS", interations)
     return best
 
-def diagonal2(L, step = 4):
+def tester(L, step = 4):
     best = 0
     for row in range(len(L)):
         for y in range(len(board[0])-1, -1, -1):
             templist = []
             for x in range(step):
                 try:
+                   # print(L[row+x][y-x], end=' ')
                     templist.append(L[row+x][y-x])
                 except:
                     templist.append(1)
@@ -97,6 +94,17 @@ def diagonal2(L, step = 4):
             if product(templist) >= best:
                 best = product(templist)
             print(row, templist)
+    return best
+            #print(row, templist)
+           # print("Y:",y)
+
+def allXrows(L):
+    best = 0
+    for row in L:
+        rowHighest = xRow(row)
+        if rowHighest >= best:
+            best =rowHighest
+        print(row, rowHighest)
     return best
 
 def printGrid(li):
@@ -106,9 +114,11 @@ def printGrid(li):
         print('')
 
 def loopAll(L):
-    x, y, d1, d2 = allXrows(L), allYrows(L), diagonal(L), diagonal2(L)
+    x = allXrows(L)
+    y = allYrows(L)
+    d1 = diagonal(L)
+    d2 = tester(L)
     return max(x,y,d1, d2)
-
 board = [
     [ 8, 2,22,97,38,15, 0,40, 0,75, 4, 5, 7,78,52,12,50,77,91, 8],
     [49,49,99,40,17,81,18,57,60,87,17,40,98,43,69,48, 4,56,62, 0],
@@ -133,24 +143,7 @@ board = [
 ]
 
 
-#print(loopAll(board))
-#print(allXrows(board))
-#print(allYrows(board))
 
 
-board = [
-    [1,2,3,4,5],
-    [4,5,6,7,8],
-    [7,8,9,9,9]
-]
-
-step = 3
-for it in range(len(board)):
-    for x in range(0, len(board)):
-        xsub, ysub = [], []
-        for y in range(step):
-            xsub.append(board[x][y+x])
-            ysub.append(board[y][x])
-        print("X",xsub)
-        print("Y",ysub)
-    print()
+#printGrid(board)
+print(loopAll(board))
