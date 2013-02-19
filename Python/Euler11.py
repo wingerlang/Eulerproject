@@ -28,9 +28,10 @@ The product of these numbers is 26  63  78  14 = 1788696.
 
 What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 2020 grid?
 """
-# Create grid
+# Create a default grid (2D array)
 def grid(width = 5, height = 5):
     return [ [x for x in range(width)] for y in range(height) ]
+
 # Calculate product in a list
 def product(L):
     tot = 1
@@ -38,21 +39,30 @@ def product(L):
         tot *= el
     return tot
 # 
-def xRow(subL):
+def xRow(subL, steps = 4):
+    print("List: " + str(subL))
     highest = 0
     for counter in range( len(subL) ):
-        rowProduct = product(subL[counter: counter+2])
+        rowProduct = product(subL[counter: counter+steps])
         if rowProduct >= highest:
             highest = rowProduct
     return highest
 
 def allYrows(L):
+    best = 0
     for y in range(len(L[0])):
         templist = []
         for x in range(len(L)):
             templist.append(board[x][y])
-            #print(board[x][y] , end=' ')
-        print(templist)
+        total = xRow(templist)
+        if total >= best:
+            best = total
+        print(total, xRow(templist))
+    return best
+
+def diagonal(L):
+    for i in range(len(L[0])):
+        print(L[i][i], end=' ')
 
 def allXrows(L):
     best = 0
@@ -102,9 +112,9 @@ board = [
 ]
 
 #printGrid(board)
-print()
+print(diagonal(board))
 
-allYrows(board)
+#print("Total:",allYrows(board))
 
 #print(xRow(board[2]))
 #print("The highest was: %d" % ( allXrows(board) ))
