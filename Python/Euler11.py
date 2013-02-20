@@ -141,16 +141,24 @@ board = [
 board = [
     [1,2,3,4,5],
     [4,5,6,7,8],
-    [7,8,9,9,9]
+    [7,8,9,10,11],
+    [7,8,9,10,11],
+    [7,8,9,10,11]
 ]
 
-step = 3
+step = 4
 for it in range(len(board)):
-    for x in range(0, len(board)):
-        xsub, ysub = [], []
-        for y in range(step):
-            xsub.append(board[x][y+x])
-            ysub.append(board[y][x])
-        print("X",xsub)
-        print("Y",ysub)
+    for y in range(len(board)):
+        xsub, ysub, zsub = [], [], []
+        for x in range(step):
+            try:
+                xsub.append(board[y][it+x])
+                ysub.append(board[x][y])
+                zsub.append(board[it+x][y+x])
+            except:
+                break
+        print("X",x,xsub)
+        print("Y",y,ysub)
+        print("Z",x+y,zsub)
+
     print()
