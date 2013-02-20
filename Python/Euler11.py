@@ -31,10 +31,7 @@ What is the greatest product of four adjacent numbers in the same direction (up,
 """
 
 # Calculate product in a list
-def product(L, total = 1):
-    for el in L:
-        total *= el
-    return total
+
 # 
 def xRow(subL, steps = 4, highest = 0):
     for counter in range(len(subL)):
@@ -137,7 +134,6 @@ board = [
 #print(allXrows(board))
 #print(allYrows(board))
 
-
 board = [
     [1,2,3,4,5],
     [4,5,6,7,8],
@@ -146,19 +142,30 @@ board = [
     [7,8,9,10,11]
 ]
 
-step = 4
-for it in range(len(board)):
+def product(L, total = 1):
+    for el in L:
+        total *= el
+    return total
+
+
+step, top, counter = 4, 0, 0
+
+for it in range(len(board) - step + 1):
     for y in range(len(board)):
         xsub, ysub, zsub = [], [], []
         for x in range(step):
+            counter += 1
             try:
                 xsub.append(board[y][it+x])
                 ysub.append(board[x][y])
                 zsub.append(board[it+x][y+x])
             except:
                 break
+        total = max(product(xsub), product(ysub), product(zsub))
+        if total >= top:
+            top = total
         print("X",x,xsub)
         print("Y",y,ysub)
         print("Z",x+y,zsub)
-
     print()
+print(top,counter)
