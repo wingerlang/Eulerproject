@@ -129,11 +129,6 @@ board = [
     [ 1,70,54,71,83,51,54,69,16,92,33,48,61,43,52, 1,89,19,67,48]
 ]
 
-
-#print(loopAll(board))
-#print(allXrows(board))
-#print(allYrows(board))
-
 board = [
     [1,2,3,4,5],
     [4,5,6,7,8],
@@ -141,6 +136,13 @@ board = [
     [7,8,9,10,11],
     [7,8,9,10,11]
 ]
+
+
+#print(loopAll(board))
+#print(allXrows(board))
+#print(allYrows(board))
+
+
 
 def product(L, total = 1):
     for el in L:
@@ -150,22 +152,37 @@ def product(L, total = 1):
 
 step, top, counter = 4, 0, 0
 
-for it in range(len(board) - step + 1):
+for it in range(len(board) ):
     for y in range(len(board)):
-        xsub, ysub, zsub = [], [], []
+        xsub, ysub, zsub, z2sub = [], [], [], []
         for x in range(step):
             counter += 1
             try:
+                tempY = x
+                tempX = len(board)-1-x-y 
+                #tempX = len(board)-1-x-y 
+                if tempX < 0:
+                    z2sub.append(1)
+                else:
+                    z2sub.append(board[tempY][tempX])
+                    
+                print("Y: %d X: %d" % (tempY, tempX))
                 xsub.append(board[y][it+x])
                 ysub.append(board[x][y])
-                zsub.append(board[it+x][y+x])
+                zsub.append(board[x][it+y+x])
+
             except:
                 break
-        total = max(product(xsub), product(ysub), product(zsub))
+        total = max(product(xsub), product(ysub), product(zsub), product(zsub), product(z2sub))
         if total >= top:
             top = total
-        print("X",x,xsub)
-        print("Y",y,ysub)
-        print("Z",x+y,zsub)
+        #print("X",x,xsub)
+        #print("Y",y,ysub)
+        #print("Z",x+y,zsub)
+        print("Z",z2sub)
+        #print()
     print()
 print(top,counter)
+
+70600674
+48477312
