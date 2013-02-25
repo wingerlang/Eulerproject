@@ -22,13 +22,15 @@ board = [
     [ 4,42,16,73,38,25,39,11,24,94,72,18, 8,46,29,32,40,62,76,36],
     [20,69,36,41,72,30,23,88,34,62,99,69,82,67,59,85,74, 4,36,16],
     [20,73,35,29,78,31,90, 1,74,31,49,71,48,86,81,16,23,57, 5,54],
-    [ 1,70,54,71,83,51,54,69,16,92,33,48,61,43,52, 1,89,19,67,48]]
-steps, top, counter = 4, 0,0
-for row in range(len(board)):
-    for it in range(len(board[row])-steps):
+    [ 1,70,54,71,83,51,54,69,16,92,33,48,61,43,52, 1,89,19,67,48]
+]
+steps, top, counter  = 4, 0,0
+
+for row in range(0, len(board), 1):
+    for it in range(0, len(board[row])-steps, 1):
         diag2, diag, verti, hori = [], [], [], []
-        for step in range(steps):
-            counter, y, x = counter+1, row+step, len(board[row])-1-it-step
+        for step in range(0, steps, 1):
+            counter, y, x = counter+1, row + step, len(board[row]) -1 -it -step
             try:
               hori.append(board[row][it+step])
               verti.append(board[row+step][it])
@@ -39,7 +41,4 @@ for row in range(len(board)):
             total = max(prod(hori), prod(verti), prod(diag), prod(diag2))
             if total >= top:
                 top = total
-bruteforce = (steps*(len(board[0]))**2)
-boost = counter / bruteforce
-print("MAX:", top)
-print("Bruteforce:", bruteforce, "COUNTER:", counter, "SAVINGS:", boost)
+print("TOP:", top, "COUNTER:",counter)

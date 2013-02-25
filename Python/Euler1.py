@@ -14,7 +14,7 @@ def factThreeAndFive(n):
 	for x in range(n):
 		if x % 3 == 0 or x % 5 == 0:
 			total += x
-		print(x)
+		#print(x)
 	return total
 
 print(factThreeAndFive(1000))
