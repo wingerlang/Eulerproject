@@ -5,26 +5,13 @@ If we list all the natural numbers below 10 that are multiples of
 
 	Find the sum of all the multiples of 3 or 5 below 1000.
 */
+var utils = require('./utils');
 
-function isMultipleOf(num, multiple) {
-	return  num % multiple === 0;
-}
-
-function isMultiple(n) {
-    return isMultipleOf(n, 3) 
-        || isMultipleOf(n, 5);
-}
-
-function range(n) {
-    return Array.apply(null, {length: n}).map(Number.call, Number);
-}
-
-function sum(a, b) {
-    return a + b;
+function divisible(n) {
+    return utils.divisibleByAll(n, [3, 5]);
 }
 
 (function solve(upTo) {
-    var result = range(upTo).filter(isMultiple).reduce(sum);
-    
-    console.log(result);
+    var result = utils.range(upTo).filter(divisible).reduce(utils.add);
+    utils.answer(result);
 }(1000));

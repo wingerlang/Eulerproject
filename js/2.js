@@ -7,29 +7,20 @@
 	By considering the terms in the Fibonacci sequence whose 
 	values do not exceed four million, find the sum of the even-valued terms.
 */
+var utils = require('./utils');
 
-
-(function solve() {
+(function solve(upper) {
 	var a = 1,
 		b = 2,
 		sum = 0,
-		seq = [a, b],
-		upper = 4000000;
+		seq = [a, b];
 
 	while(a < upper) {
 		a += b;
 		b += a;
-		
 		seq = seq.concat([a, b]);
 	}
 
-	var result = seq.filter(isEven).reduce(add);
+	var result = seq.filter(utils.isEven).reduce(utils.add);
 	console.log('Answer:', result);
-}());
-
-function isEven(x) {
-	return x % 2 === 0;
-}
-function add(a, b) {
-	return a + b;
-}
+}(4000000));
