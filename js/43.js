@@ -14,11 +14,10 @@ d7d8d9=728 is divisible by 13
 d8d9d10=289 is divisible by 17
 Find the sum of all 0 to 9 pandigital numbers with this property.
 */
-
-
-
 var utils = require('./utils');
 
+// wtf retard.
+// GENERATE all pandigital numbers instead of looping to 0-1000000000000000000000000000000. (x(x_(x_x)_x)x)
 (function solve(num, stop) {
 	var result;
 
@@ -31,7 +30,7 @@ var utils = require('./utils');
 
 	utils.answer(result);
 
-}(/*1023456789*/1406357289, 9876543210));
+}(1023456789, 9876543210));
 
 function isPandigital(n) {
 	n = n.toString();
@@ -50,3 +49,7 @@ function isDivisible(n) {
 function onlyUnique(value, index, self) { 
     return self.indexOf(value) === index;
 }
+
+// 1406357289;
+// 1430952867;
+// 1460357289;

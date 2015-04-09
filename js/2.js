@@ -22,5 +22,6 @@ var utils = require('./utils');
 	}
 
 	var result = seq.filter(utils.isEven).reduce(utils.add);
-	console.log('Answer:', result);
+	utils.answer(result);
+	
 }(4000000));

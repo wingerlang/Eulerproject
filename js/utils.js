@@ -7,7 +7,7 @@ function range(n) {
 function divisibleBy(a, b) {
 	return a % b === 0;
 }
-function divisibleByAll(a, l) {
+function divisibleByAll(l, a) {
 	return l.every(function(e) {
 		return divisibleBy(a, e);
 	});

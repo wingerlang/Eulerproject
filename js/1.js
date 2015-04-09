@@ -7,11 +7,10 @@ If we list all the natural numbers below 10 that are multiples of
 */
 var utils = require('./utils');
 
-function divisible(n) {
-    return utils.divisibleByAll(n, [3, 5]);
-}
-
 (function solve(upTo) {
-    var result = utils.range(upTo).filter(divisible).reduce(utils.add);
+    var result = utils.range(upTo)
+	    .filter(utils.divisibleByAll.bind(null, [3, 5]))
+	    .reduce(utils.add);
+
     utils.answer(result);
 }(1000));
