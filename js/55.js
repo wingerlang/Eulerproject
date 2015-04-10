@@ -46,13 +46,9 @@ function countLychrelUpTo(upper) {
 }
 
 function isLychrel (n, triesLeft) {
-	if (triesLeft < 0) 
-		return true;
-	
 	n += utils.reverse(n);
 	
-	if (utils.isPalindrome(n)) 
-		return false;
-	
-	return isLychrel(n, triesLeft - 1);
+	return triesLeft < 0 ? true 
+		: utils.isPalindrome(n) ? false 
+		: isLychrel(n, triesLeft - 1);
 }

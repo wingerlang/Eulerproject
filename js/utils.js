@@ -1,7 +1,14 @@
 var start = new Date().getTime();
 
-function range(n) {
+function range_r(n) {
     return Array.apply(null, {length: n}).map(Number.call, Number);
+}
+function range(start, stop, step) {
+	var l = [];
+	step = step || 1;
+
+	for(var i = start; i < stop; i+= step) l.push(i);
+	return l;
 }
 
 function divisibleBy(a, b) {
@@ -33,7 +40,24 @@ function add(a, b) {
 	return a + b;
 }
 
+function factorial(n) {
+	if (n < 2) return 1;
+	return n * factorial(n-1);
+}
+function pow2(n) {
+	return Math.pow(n, 2);
+}
+
+function digits(n) {
+	return n.toString().split('').map(Number);
+}
+
+function equals(a, b) {
+	return a === b;
+}
+
 module.exports = {
+	range_r: range_r,
 	range: range,
 	divisibleBy: divisibleBy,
 	isPalindrome: isPalindrome,
@@ -41,5 +65,9 @@ module.exports = {
 	isEven: isEven,
 	add: add,
 	divisibleByAll: divisibleByAll,
-	reverse: reverse
+	reverse: reverse,
+	factorial: factorial,
+	pow2: pow2,
+	digits: digits,
+	equals: equals
 };
