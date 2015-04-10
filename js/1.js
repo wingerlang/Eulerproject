@@ -5,12 +5,14 @@ If we list all the natural numbers below 10 that are multiples of
 
 	Find the sum of all the multiples of 3 or 5 below 1000.
 */
-var utils = require('./utils');
+
+var math = require('./math'),
+	euler = require('./euler');
 
 (function solve(upTo) {
-    var result = utils.range(upTo)
-	    .filter(utils.divisibleByAll.bind(null, [3, 5]))
-	    .reduce(utils.add);
+    var result = math.range(0, upTo)
+	    .filter(math.divisibleBySome.bind(null, [3, 5]))
+	    .reduce(math.add);
 
-    utils.answer(result);
+    euler.answer(result);
 }(1000));
