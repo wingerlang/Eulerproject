@@ -19,6 +19,7 @@ var utils = require('./utils');
 function calculate() {
 	var pattern = /1.2.3.4.5.6.7.8.9.0/;
 	var i = Math.ceil(Math.sqrt(1020304050607080900));
+
 	while(true) {
 		var res = Math.pow(++i, 2).toString();
 		if(res.match(pattern)) {
@@ -26,3 +27,6 @@ function calculate() {
 		}
 	}
 }
+
+// Due to some problem with i > Math.MAX_SAFE_INTEGER, this yields the wrong solution
+// Implemented in Python get correct result.

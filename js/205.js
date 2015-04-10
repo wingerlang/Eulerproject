@@ -34,10 +34,10 @@ function loop(times) {
 	console.log('Pyramidal', pyramidalWins, 'Cubic', cubicWins, pyramidalWinRate );
 }
 function pyramidal() {
-	return randomNumbers(0, 4, 9).reduce(utils.add);
+	return randomNumbers(1, 4, 9).reduce(utils.add);
 }
 function cubic() {
-	return randomNumbers(0, 6, 6).reduce(utils.add);
+	return randomNumbers(1, 6, 6).reduce(utils.add);
 }
 
 function randomNumbers(low, high, number) {
@@ -48,7 +48,7 @@ function randomNumbers(low, high, number) {
 }
 
 function random(low, high) {
-	return low + Math.ceil(Math.random() * high);
+	return low + Math.floor(Math.random() * high);
 }
 
 console.log(pyramidal(), pyramidal(), pyramidal(), pyramidal())
