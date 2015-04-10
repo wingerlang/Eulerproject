@@ -4,11 +4,13 @@
 
 */
 
-var utils = require('./utils');
+var math = require('./math'),
+	string = require('./string'),
+	euler = require('./euler');
 
 (function solve() {
 	var result;
 
-	utils.answer(result);
+	euler.answer(result);
 
 }());

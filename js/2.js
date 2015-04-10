@@ -7,7 +7,9 @@
 	By considering the terms in the Fibonacci sequence whose 
 	values do not exceed four million, find the sum of the even-valued terms.
 */
-var utils = require('./utils');
+var math = require('./math'),
+	string = require('./string'),
+	euler = require('./euler');
 
 (function solve(upper) {
 	var a = 1,
@@ -21,7 +23,7 @@ var utils = require('./utils');
 		seq = seq.concat([a, b]);
 	}
 
-	var result = seq.filter(utils.isEven).reduce(utils.add);
-	utils.answer(result);
+	var result = seq.filter(math.isEven).reduce(math.add);
+	euler.answer(result);
 	
 }(4000000));
