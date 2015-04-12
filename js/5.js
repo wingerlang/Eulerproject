@@ -9,13 +9,7 @@ var math = require('./math'),
 
 (function solve(n, upper) {
 	var range = math.range(0, upper);
-	while (!divisibleByAll(range, ++n));
+	while (!math.divisibleByAll(range, ++n));
 	
 	euler.answer(n);
 }(1, 20));
-
-function divisibleByAll(list, x) {
-	return list.every(function(e) {
-		return math.divisibleBy(x, e+1);
-	});
-}

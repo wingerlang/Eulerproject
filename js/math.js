@@ -13,10 +13,6 @@ function range(start, stop, step) {
 	return l;
 }
 
-function divisibleBy(num, divisor) {
-	return num % divisor === 0;
-}
-
 function max(numbers) {
 	var maxVal = 0;
 
@@ -25,6 +21,10 @@ function max(numbers) {
 			maxVal = num;
 	});
 	return maxVal;
+}
+
+function divisibleBy(num, divisor) {
+	return num % divisor === 0;
 }
 
 function divisibleByAll(divisors, num) {
@@ -40,6 +40,10 @@ function divisibleBySome(divisors, num) {
 }
 
 function numDivisors(n) {
+	return divisors(n).length;
+}
+
+function divisors(n) {
 	var divisors = [1, n];
 	
 	for(var i = 2; i < n; i++) {
@@ -47,12 +51,16 @@ function numDivisors(n) {
 			divisors.push(i);
 		}
 	}
-	return divisors.length;
+	return divisors;
 }
 
 function isEven(x) {
 	return x % 2 === 0;
 }
+function isOdd(x) {
+	return x % 2 === 1;
+}
+
 function add(a, b) {
 	return a + b;
 }
@@ -74,9 +82,12 @@ function equals(a, b) {
 }
 
 function isPrime(n) {
-	for(var divisor = 1; divisor < n; divisor++) 
-		if (divisibleBy(n, divisor))
+	var stop = floor_sqrt(n);
+	for(var divisor = 1; divisor < stop; divisor++) {
+		if (divisibleBy(n, divisor)) {
 			return false;
+		}
+	}
 	return true;
 }
 
@@ -105,9 +116,11 @@ module.exports = {
 	divisibleBy: divisibleBy,
 	divisibleBySome: divisibleBySome,
 	divisibleByAll: divisibleByAll,
+	divisors: divisors,
 	numDivisors: numDivisors,
 
 	isEven: isEven,
+	isOdd: isOdd,
 	add: add,
 	factorial: factorial,
 	pow2: pow2,
