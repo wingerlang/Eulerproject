@@ -18,27 +18,17 @@
 	What is the value of the first triangle number to have over five hundred divisors?
 */
 
-function numDivisors(n) {
-	var divisors = [1];
-	for(var i = 2; i <= n; i++) {
-		if (isDivisible(n, i)) {
-			divisors.push(i);
-		}
-	}
-	return divisors.length;
-}
+var math = require('./math'),
+	string = require('./string'),
+	euler = require('./euler');
 
-function isDivisible(n, x) {
-	return n % x === 0;
-}
+(function solve(target) {
+	var i = 2,
+		sum = 1;
 
-(function solve(upper) {
-	var i = 1,
-		sum = 0;
-
-	while(true) {
+	while(math.numDivisors(sum) < target) {
 		sum += i++;
-		if (numDivisors(sum) > upper) break;
 	}
-	console.log('Result', sum);
+	
+	euler.answer(sum);
 }(500));

@@ -13,20 +13,41 @@ function range(start, stop, step) {
 	return l;
 }
 
-function divisibleBy(a, b) {
-	return a % b === 0;
+function divisibleBy(num, divisor) {
+	return num % divisor === 0;
 }
 
-function divisibleByAll(l, a) {
-	return l.every(function(e) {
-		return divisibleBy(a, e);
+function max(numbers) {
+	var maxVal = 0;
+
+	numbers.forEach(function (num) {
+		if (num > maxVal)
+			maxVal = num;
+	});
+	return maxVal;
+}
+
+function divisibleByAll(divisors, num) {
+	return divisors.every(function(divisor) {
+		return divisibleBy(num, divisor);
 	});
 }
 
-function divisibleBySome(l, a) {
-	return l.some(function(e) {
-		return divisibleBy(a, e);
+function divisibleBySome(divisors, num) {
+	return divisors.some(function(divisor) {
+		return divisibleBy(num, divisor);
 	});
+}
+
+function numDivisors(n) {
+	var divisors = [1, n];
+	
+	for(var i = 2; i < n; i++) {
+		if (divisibleBy(n, i)) {
+			divisors.push(i);
+		}
+	}
+	return divisors.length;
 }
 
 function isEven(x) {
@@ -52,16 +73,48 @@ function equals(a, b) {
 	return a === b;
 }
 
+function isPrime(n) {
+	for(var divisor = 1; divisor < n; divisor++) 
+		if (divisibleBy(n, divisor))
+			return false;
+	return true;
+}
+
+function floor_sqrt(n) {
+	return Math.floor(Math.sqrt(n));
+}
+
+function primeFactors(n) {
+	var factors = [],
+		stop = floor_sqrt(n);
+
+	for(var i = 2; i <= stop; i++ ) {
+		while(divisibleBy(n, i)) {
+			factors.push(i);
+			n /= i;
+		}
+	}
+
+	return factors;
+}
+
 module.exports = {
 	range_r: range_r,
 	range: range,
+	
 	divisibleBy: divisibleBy,
 	divisibleBySome: divisibleBySome,
 	divisibleByAll: divisibleByAll,
+	numDivisors: numDivisors,
+
 	isEven: isEven,
 	add: add,
 	factorial: factorial,
 	pow2: pow2,
 	digits: digits,
-	equals: equals
+	equals: equals,
+	max: max,
+
+	primeFactors: primeFactors,
+	isPrime: isPrime
 };

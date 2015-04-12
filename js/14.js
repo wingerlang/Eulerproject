@@ -16,7 +16,9 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 
 */
 
-var utils = require('./utils');
+var math = require('./math'),
+	string = require('./string'),
+	euler = require('./euler');
 
 (function solve(start, upper) {
 	var longest = {
@@ -33,18 +35,18 @@ var utils = require('./utils');
 		}
 		start++;
 	};
-	utils.answer(longest.start);
+	euler.answer(longest.start);
 }(1, 999999));
 
 
 function seq(n, l) {
-	if (n === 1) {
+	if (n === 1) 
 		return l.concat([n]);
 	}
 	return seq( transform(n), l.concat([n]));
 }
 function transform(x) {
-	return utils.isEven(x) ? decrease(x) : increase(x);
+	return math.isEven(x) ? decrease(x) : increase(x);
 }
 
 function increase(x) {

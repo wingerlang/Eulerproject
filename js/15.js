@@ -9,28 +9,35 @@ How many such routes are there through a 20×20 grid?
 http://www.mozartreina.com/counting-lattice-paths.html
 */ 
 
-var utils = require('./utils');
+var math = require('./math'),
+	string = require('./string'),
+	euler = require('./euler');
 
 (function solve() {
 	var result;
 
-	// 1. Go right until wall
-	// 2. Go down untill wall
-		// Repeat until finish
-		// Backtrack 
-	
-	// Go to 1
-
-	// Count number of times we hit finish
-	utils.answer(result);
+	euler.answer(result);
 
 }());
 
-function walk() {
 
+var gridSize = [2,2]
+ 
+
+function path(gridSize) {
+	console.log(gridSize);
+   // base case, no moves left
+    if (gridSize == [0,0]) return 1
+    
+    //# move left when possible
+    if(gridSize[0] > 0)
+        times += path([gridSize[0]-1, gridSize[1]])
+    
+    //# move down when possible
+    if (gridSize[1] > 0)
+        times += path([gridSize[0], gridSize[1]-1])
+
+    return times;
 }
-function left() {
-}
-function right() {
-	
-}
+
+console.log(path(gridSize))
