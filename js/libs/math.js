@@ -70,6 +70,7 @@ function times(a, b) {
 	return a * b;
 }
 function product(numbers) {
+	if (numbers.length === 0) return NaN;
 	return numbers.reduce(times);
 }
 
