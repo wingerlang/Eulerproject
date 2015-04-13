@@ -9,9 +9,9 @@ How many such routes are there through a 20×20 grid?
 http://www.mozartreina.com/counting-lattice-paths.html
 */ 
 
-var math = require('./math'),
-	string = require('./string'),
-	euler = require('./euler');
+var math = require('../libs/math'),
+	string = require('../libs/string'),
+	euler = require('../libs/euler');
 
 (function solve() {
 	var result;

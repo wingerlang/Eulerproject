@@ -16,9 +16,9 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 
 */
 
-var math = require('./math'),
-	string = require('./string'),
-	euler = require('./euler');
+var math = require('../libs/math'),
+	string = require('../libs/string'),
+	euler = require('../libs/euler');
 
 (function solve(start, upper) {
 	var longest = {

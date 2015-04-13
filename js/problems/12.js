@@ -18,9 +18,9 @@
 	What is the value of the first triangle number to have over five hundred divisors?
 */
 
-var math = require('./math'),
-	string = require('./string'),
-	euler = require('./euler');
+var math = require('../libs/math'),
+	string = require('../libs/string'),
+	euler = require('../libs/euler');
 
 (function solve(target) {
 	var i = 2,

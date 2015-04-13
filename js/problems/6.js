@@ -13,9 +13,9 @@ Find the difference between the sum of the squares of the first one hundred natu
 
 */
 
-var math = require('./math'),
-	string = require('./string'),
-	euler = require('./euler');
+var math = require('../libs/math'),
+	string = require('../libs/string'),
+	euler = require('../libs/euler');
 
 (function solve(to) {
 	var result = calculateDiff(to);

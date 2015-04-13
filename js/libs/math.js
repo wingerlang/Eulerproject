@@ -1,24 +1,26 @@
 'use strict';
 
-
 function range_r(n) {
     return Array.apply(null, {length: n}).map(Number.call, Number);
 }
 
 function range(start, stop, step) {
-	var l = [];
+	var numberRange = [];
 	step = step || 1;
 
-	for(var i = start; i < stop; i+= step) l.push(i);
-	return l;
+	for(var i = start; i < stop; i+= step) {
+		numberRange.push(i);
+	}
+	return numberRange;
 }
 
 function max(numbers) {
 	var maxVal = 0;
 
 	numbers.forEach(function (num) {
-		if (num > maxVal)
+		if (num > maxVal) {
 			maxVal = num;
+		}
 	});
 	return maxVal;
 }
@@ -64,6 +66,12 @@ function isOdd(x) {
 function add(a, b) {
 	return a + b;
 }
+function times(a, b) {
+	return a * b;
+}
+function product(numbers) {
+	return numbers.reduce(times);
+}
 
 function factorial(n) {
 	if (n < 2) return 1;
@@ -81,9 +89,19 @@ function equals(a, b) {
 	return a === b;
 }
 
+function floor_sqrt(n) {
+	return Math.floor(Math.sqrt(n));
+}
+function ceil_sqrt(n) {
+	return Math.ceil(Math.sqrt(n));	
+}
+
 function isPrime(n) {
-	var stop = floor_sqrt(n);
-	for(var divisor = 1; divisor < stop; divisor++) {
+	if (n < 2) return false;
+	if (n === 2) return true;
+
+	var stop = ceil_sqrt(n);
+	for(var divisor = 2; divisor <= stop; divisor++) {
 		if (divisibleBy(n, divisor)) {
 			return false;
 		}
@@ -91,13 +109,9 @@ function isPrime(n) {
 	return true;
 }
 
-function floor_sqrt(n) {
-	return Math.floor(Math.sqrt(n));
-}
-
 function primeFactors(n) {
 	var factors = [],
-		stop = floor_sqrt(n);
+		stop = ceil_sqrt(n);
 
 	for(var i = 2; i <= stop; i++ ) {
 		while(divisibleBy(n, i)) {
@@ -105,12 +119,22 @@ function primeFactors(n) {
 			n /= i;
 		}
 	}
-
 	return factors;
 }
 
+function primeNumber(primeNumber) {
+	var primes = [],
+		i = 1;
+
+	while (primes.length < primeNumber) {
+		if (isPrime(++i)) {
+			primes.push(i);
+		}
+	}
+	return i;
+}
+
 module.exports = {
-	range_r: range_r,
 	range: range,
 	
 	divisibleBy: divisibleBy,
@@ -122,6 +146,7 @@ module.exports = {
 	isEven: isEven,
 	isOdd: isOdd,
 	add: add,
+	times: times,
 	factorial: factorial,
 	pow2: pow2,
 	digits: digits,
@@ -129,5 +154,7 @@ module.exports = {
 	max: max,
 
 	primeFactors: primeFactors,
-	isPrime: isPrime
+	isPrime: isPrime,
+	primeNumber: primeNumber,
+	product: product
 };

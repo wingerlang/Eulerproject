@@ -3,9 +3,9 @@
 	What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 */
 
-var math = require('./math'),
-	string = require('./string'),
-	euler = require('./euler');
+var math = require('../libs/math'),
+	string = require('../libs/string'),
+	euler = require('../libs/euler');
 
 (function solve(n, upper) {
 	var range = math.range(0, upper);
