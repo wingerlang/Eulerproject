@@ -134,6 +134,12 @@ function primeNumber(primeNumber) {
 	return i;
 }
 
+function isPythagoreanTriplet(a, b, c) {
+	return (a < b) 
+		&& (b < c) 
+		&& (pow2(a) + pow2(b)) === pow2(c)
+}
+
 module.exports = {
 	range: range,
 	
@@ -156,5 +162,7 @@ module.exports = {
 	primeFactors: primeFactors,
 	isPrime: isPrime,
 	primeNumber: primeNumber,
-	product: product
+	product: product,
+
+	isPythagoreanTriplet: isPythagoreanTriplet,
 };
