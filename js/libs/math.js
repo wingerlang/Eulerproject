@@ -14,7 +14,26 @@ function range(start, stop, step) {
 	return numberRange;
 }
 
-function max(numbers) {
+function max(a, b) {
+	if (Array.isArray(a)) {
+		if (typeof b == 'number') {
+			return maxNumber(maxArray(a), b)
+		} else {
+			return maxArray(a);
+		}
+	} else if (typeof a == 'number' && typeof b == 'number') {
+		return maxNumber(a, b);
+	}
+	else {
+		return NaN;
+	}
+}
+
+function maxNumber(a, b) {
+	return a > b ? a : b;
+}
+
+function maxArray(numbers) {
 	var maxVal = 0;
 
 	numbers.forEach(function (num) {
@@ -158,7 +177,10 @@ module.exports = {
 	pow2: pow2,
 	digits: digits,
 	equals: equals,
+	
 	max: max,
+	maxNumber: maxNumber,
+	maxArray: maxArray,
 
 	primeFactors: primeFactors,
 	isPrime: isPrime,
