@@ -1,12 +1,10 @@
 /*
+	In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
 
-In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
+	var = grid = [...]
+	The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
 
-var = grid = [...]
-The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
-
-What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
-
+	What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 */
 
 var grid = [
@@ -30,27 +28,28 @@ var grid = [
 	[20, 69, 36, 41, 72, 30, 23, 88, 34, 62, 99, 69, 82, 67, 59, 85, 74, 04, 36, 16],
 	[20, 73, 35, 29, 78, 31, 90, 01, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 05, 54],
 	[01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48]
-]
+];
 
 var math = require('../libs/math'),
 	string = require('../libs/string'),
 	euler = require('../libs/euler');
 
 (function solve(grid) {
-	var result = calc(grid);
+	var result = findSum(grid);
 
 	euler.answer(result);
 }(grid));
 
-function calc(grid) {
-	var highest = 0,
-		sums,
+function findSum(grid) {
+	var sums,
+		traverseGrid,
+		highest = 0,
 		adjacentNumbers = 4;
 
 	for(var y = 0; y < grid.length - adjacentNumbers; y++) {
 		for(var x = 0; x < grid[y].length - adjacentNumbers; x++) {
-
-			var traverseGrid = traverse.bind(null, grid, adjacentNumbers, {y:y, x:x});
+			traverseGrid = traverse.bind(null, grid, adjacentNumbers, {y:y, x:x});
+			
 			highest = math.max([
 				traverseGrid({x:1, y:1}),
 				traverseGrid({x:-1, y:1}),
@@ -63,10 +62,7 @@ function calc(grid) {
 }
 
 function traverse(grid, times, start, pattern) {
-	var numbers = [];
-	
-	math.range(0, times).forEach(function(i) {
-		numbers.push( grid[start.y + i * pattern.y][start.x + i * pattern.x]);
+	return math.range(0, times).map(function(i) {
+		return grid[start.y + i * pattern.y][start.x + i * pattern.x];
 	});
-	return numbers;
 }
