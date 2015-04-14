@@ -74,6 +74,11 @@ function divisors(n) {
 	}
 	return divisors;
 }
+function properDivisorsOf(n) {
+	return range(1, n).filter(function(i) {
+		return divisibleBy(n, i);
+	});
+}
 
 function isEven(x) {
 	return x % 2 === 0;
@@ -160,6 +165,12 @@ function isPythagoreanTriplet(a, b, c) {
 		&& (pow2(a) + pow2(b)) === pow2(c)
 }
 
+function isAmicableNumber(n) {
+	var a = properDivisorsOf(n).reduce(add, 0);
+	var b = properDivisorsOf(a).reduce(add, 0);
+	return b == n && a !== b;
+}
+
 module.exports = {
 	range: range,
 	
@@ -168,6 +179,7 @@ module.exports = {
 	divisibleByAll: divisibleByAll,
 	divisors: divisors,
 	numDivisors: numDivisors,
+	properDivisorsOf: properDivisorsOf,
 
 	isEven: isEven,
 	isOdd: isOdd,
@@ -186,6 +198,7 @@ module.exports = {
 	isPrime: isPrime,
 	primeNumber: primeNumber,
 	product: product,
+	isAmicableNumber: isAmicableNumber,
 
 	isPythagoreanTriplet: isPythagoreanTriplet,
 };
