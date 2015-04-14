@@ -20,10 +20,8 @@ var math = require('../libs/math'),
 
 }());
 
-
 var gridSize = [2,2]
  
-
 function path(gridSize) {
 	console.log(gridSize);
    // base case, no moves left
