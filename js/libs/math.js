@@ -171,8 +171,13 @@ function isAmicableNumber(n) {
 	return b == n && a !== b;
 }
 
+function delay(f, ms) {
+	return setTimeout(f, ms);
+}
+
 module.exports = {
 	range: range,
+	delay: delay,
 	
 	divisibleBy: divisibleBy,
 	divisibleBySome: divisibleBySome,
