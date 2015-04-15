@@ -18,9 +18,53 @@ var math = require('../libs/math'),
 	string = require('../libs/string'),
 	euler = require('../libs/euler');
 
-(function solve() {
-	var result;
-
+(function solve(limit) {
+	var result = findSum(limit);
 	euler.answer(result);
 
-}());
+}(28123));
+
+function findSum(limit) {
+	var abundantNumbers = [],
+		sum = 0;
+
+	math.range(0, 28123).forEach(function(i) {
+		if(math.abundant(i)) {
+			abundantNumbers.push(i);
+		}
+
+		if(!canBeWrittenAsSumOfTwoAbundantNumbers(abundantNumbers, i)) {
+			sum += i;
+		}
+	});
+	return sum;
+}
+
+function canBeWrittenAsSumOfTwoAbundantNumbers(numbers, n) {
+	var i = 0, 
+		j = 0,
+		stop = numbers.length - 1,
+		intermediate;
+
+	if (!numbers.length) {
+		return false;
+	}
+
+	do {
+		intermediate = numbers[i] + numbers[j];
+		if (intermediate === n) {
+			return true;
+		}
+		else if (intermediate < n && j < stop) {
+			j++;
+		}
+		else if (i < stop) {
+			j = i;
+			i++;
+		}
+		else {
+			return false;
+		}
+
+	} while(true);
+}
