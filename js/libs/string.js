@@ -15,6 +15,16 @@ function isPalindrome_optimized(s) {
     return true;
 }
 
+function isPermutation(a, b) {
+	a = a.toString().split('');
+	b = b.toString().split('');
+
+	return a.length === b.length 
+		&& a.every(function(char) {
+			return b.indexOf(char) > -1;
+		});
+}
+
 
 function isPalindromeNumber(n) {
 	return isPalindrome_optimized(n.toString());
@@ -31,5 +41,7 @@ function reverse(n) {
 module.exports = {
 	isPalindrome: isPalindrome_optimized,
 	isPalindromeNumber: isPalindromeNumber,
-	reverse: reverse
+	reverse: reverse,
+
+	isPermutation: isPermutation
 };

@@ -111,6 +111,10 @@ function add(a, b) {
 function times(a, b) {
 	return a * b;
 }
+function double(n) {
+	return n * 2;
+}
+
 function product(numbers) {
 	if (numbers.length === 0) return NaN;
 	return numbers.reduce(times);
@@ -130,6 +134,10 @@ function digits(n) {
 
 function equals(a, b) {
 	return a === b;
+}
+
+function truthy(a) {
+	return !!a;
 }
 
 function floor_sqrt(n) {
@@ -222,6 +230,8 @@ module.exports = {
 	pow2: pow2,
 	digits: digits,
 	equals: equals,
+	double: double,
+	truthy: truthy,
 	
 	max: max,
 	maxNumber: maxNumber,

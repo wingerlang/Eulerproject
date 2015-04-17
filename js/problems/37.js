@@ -23,7 +23,8 @@ var math = require('../libs/math'),
 function findSum(num) {
 	var found = 0,
 		sum = 0,
-		n = 8;
+		n = 8,
+		cache = {};
 
 	while( found < num) {
 		if(isTruncatablePrime(n)) {
@@ -43,6 +44,3 @@ function isTruncatablePrime(n) {
 		return math.isPrime(Number(n.substring(len, i))) && math.isPrime(Number(n.substring(0, i)))
 	});
 }
-
-
-//console.log(isTruncatablePrime(43));
