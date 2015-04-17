@@ -11,28 +11,18 @@ var math = require('../libs/math'),
 	string = require('../libs/string'),
 	euler = require('../libs/euler');
 
-(function solve() {
-	var result = findInteger();
+(function solve(start, multiples) {
+	var result = findInteger(start, multiples);
 
 	euler.answer(result);
-}());
+}(1, [2,3,4,5,6]));
 
-
-
-function findInteger() {
-	var n = 1;
-	while(n++) {
-		if(isPermutedMultiples(n)) {
-			return n;
-		}
-	}
+function findInteger(n, multiples) {
+	while(!isPermutedMultiples(++n, multiples));
+	return n;
 }
 
-function isPermutedMultiples(n) {
-	return math.range(2, 7).map(math.times.bind(null, n))
-		.map(string.isPermutation.bind(null, n)).every(math.truthy);
+function isPermutedMultiples(n, multiples) {
+	return multiples.map(math.times.bind(null, n))
+		.every(string.isPermutation.bind(null, n));
 }
-//3.9s
-// 6
-// 5
-// 4.87
