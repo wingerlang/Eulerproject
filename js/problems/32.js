@@ -17,35 +17,33 @@ var math = require('../libs/math'),
 	euler = require('../libs/euler');
 
 (function solve() {
-	var result;
+	var result = findSolution();
 
 	euler.answer(result);
 }());
 
 
+function isSuperPandigital(n, i) {
+	return math.isEven(n/i) 
+		&& i * n/i === n
+		&& math.isPandigital('' + i + n/i + n);
+}	
+
 function findSolution() {
 	var sum = 0;
-	var pairs = [];
+	var found = {};
 
 	for (var n = 1; n < 10000; n++) {
-		for(var i = 2; i < Math.sqrt(n); i++) {
-			//console.log(n, i)
-			if (math.isEven(n/i)) {
-				//console.log('iseven', n, i)
-				if(i * n/i === n) {
-					console.log(i,'*','n/i',n/i, n)
-					if (math.isPandigital('' + i + n/i + n)) {
-						sum += i * n
-						console.log('IS PANDIGITAL!', i, n/i, n);
-						paris.push([i,n, n*i]);
-					}
-				}
+		for(var i = 2; i < 10000; i++) {
+			if (isSuperPandigital(n, i)) {
+				if(!found[n]) {
+					found[n] = n;
+					sum += n;
+				} 
 			}
 		}
 	}
-	console.log(sum);
-	console.log(pairs);
-
+	return sum;
 }
 
-console.log(findSolution(7254));
+//3s
