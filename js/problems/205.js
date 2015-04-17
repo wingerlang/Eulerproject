@@ -12,12 +12,15 @@ What is the probability that Pyramidal Pete beats Cubic Colin? Give your answer 
 */
 
 
-var utils = require('./utils');
+var math = require('../libs/math'),
+	string = require('../libs/string'),
+	euler = require('../libs/euler');
+
 
 (function solve(times) {
 	var result = loop(times);
 
-	utils.answer(result);
+	euler.answer(result);
 
 }(100000000));
 
@@ -34,10 +37,10 @@ function loop(times) {
 	console.log('Pyramidal', pyramidalWins, 'Cubic', cubicWins, pyramidalWinRate );
 }
 function pyramidal() {
-	return randomNumbers(1, 4, 9).reduce(utils.add);
+	return randomNumbers(1, 4, 9).reduce(math.add);
 }
 function cubic() {
-	return randomNumbers(1, 6, 6).reduce(utils.add);
+	return randomNumbers(1, 6, 6).reduce(math.add);
 }
 
 function randomNumbers(low, high, number) {

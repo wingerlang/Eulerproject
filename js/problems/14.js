@@ -35,16 +35,19 @@ var math = require('../libs/math'),
 		}
 		start++;
 	};
+
 	euler.answer(longest.start);
 }(1, 999999));
 
 
 function seq(n, l) {
-	if (n === 1) 
+	if (n === 1) {
 		return l.concat([n]);
 	}
+	
 	return seq( transform(n), l.concat([n]));
 }
+
 function transform(x) {
 	return math.isEven(x) ? decrease(x) : increase(x);
 }

@@ -1,5 +1,4 @@
 /*
-
 Maximum path sum I
 Problem 18
 By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
@@ -16,6 +15,7 @@ Find the maximum total from top to bottom of the triangle below:
 [NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)]
 
 */
+
 var grid = [
 	[75],
 	[95, 64],
@@ -34,43 +34,21 @@ var grid = [
 	[04, 62, 98, 27, 23, 09, 70, 98, 73, 93, 38, 53, 60, 04, 23],
 ];
 
-grid = [
-	[3],
-	[7, 4],
-	[2, 4, 6],
-	[8, 5, 9, 3]
-];
 
 var math = require('../libs/math'),
 	string = require('../libs/string'),
 	euler = require('../libs/euler');
 
-(function solve() {
-	var result;
+(function solve(grid) {
+	var result = traverse(grid, 0, 0, 0);
 
 	euler.answer(result);
 
-}());
-
+}(grid));
 
 function traverse(grid, y, x, sum) {
-	if (y == grid.length-1) {
-		sum += grid[y][x];
-		console.log(grid[y][x])
-		console.log()
-		return sum;
-	}
-
-	console.log(grid[y][x])
-
-	// Go down
-	sum = traverse(grid, y + 1, x, sum + grid[y][x]);
-
-	console.log('SUM', sum);
-	// Go right
-	sum = traverse(grid, y+1, x+1, sum + grid[y][x])
-
-	return sum;
+	var node = grid[y][x];
+	if (y === grid.length-1) return sum + node;
+	
+	return Math.max(traverse(grid, y+1, x, sum + node), traverse(grid, y+1, x+1, sum + node));
 }
-
-console.log(traverse(grid, 0, 0, 0));

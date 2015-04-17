@@ -19,5 +19,8 @@ var utils = require('./utils');
 }( 7 * utils.factorial(9) ));
 
 function factorialSum(n) {
-	return n === n.toString().split('').map(Number).map(utils.factorial).reduce(utils.add);
+	return n === n.toString().split('')
+		.map(Number)
+		.map(utils.factorial)
+		.reduce(utils.add);
 }

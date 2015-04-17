@@ -8,12 +8,15 @@ where each “_” is a single digit.
 
 */
 
-var utils = require('./utils');
+var math = require('../libs/math'),
+	string = require('../libs/string'),
+	euler = require('../libs/euler');
+
 
 (function solve() {
 	var result = calculate();
 
-	utils.answer(result);
+	euler.answer(result);
 }());
 
 function calculate() {

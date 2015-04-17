@@ -22,7 +22,7 @@ var utils = require('./utils');
 	var result;
 
 	for(; num < stop; num++) {
-		if (isPandigital(num) && isDivisible(num)) {
+		if (math.isPandigital(num) && isDivisible(num)) {
 			result += num;
 			console.log('isPandigital', num);
 		}
@@ -32,10 +32,6 @@ var utils = require('./utils');
 
 }(1023456789, 9876543210));
 
-function isPandigital(n) {
-	n = n.toString();
-	return n.length === n.split('').map(Number).filter(onlyUnique).length;
-}
 
 function isDivisible(n) {
 	var i = 1, 
@@ -44,10 +40,6 @@ function isDivisible(n) {
 	return [2, 3, 5, 7, 11,13, 17].every(function(d) {
 		return utils.divisibleBy(Number(n.toString().slice(i++, j++)), d);
 	});
-}
-
-function onlyUnique(value, index, self) { 
-    return self.indexOf(value) === index;
 }
 
 // 1406357289

@@ -13,29 +13,21 @@ var math = require('../libs/math'),
 	string = require('../libs/string'),
 	euler = require('../libs/euler');
 
-(function solve() {
-	var result;
+(function solve(width, height) {
+	var result = path(width, height, 0);
 
 	euler.answer(result);
 
-}());
+}(width, height));
 
-var gridSize = [2,2]
- 
-function path(gridSize) {
-	console.log(gridSize);
-   // base case, no moves left
-    if (gridSize == [0,0]) return 1
+function path(y, x, times) {
+    if (y === 0 && x === 0) 
+        return times + 1;
     
-    //# move left when possible
-    if(gridSize[0] > 0)
-        times += path([gridSize[0]-1, gridSize[1]])
+    if (y > 0) 
+        times = path(y - 1, x, times);
     
-    //# move down when possible
-    if (gridSize[1] > 0)
-        times += path([gridSize[0], gridSize[1]-1])
-
+    if (x > 0) 
+        times = path(y, x - 1, times);
     return times;
 }
-
-console.log(path(gridSize))

@@ -65,19 +65,37 @@ function numDivisors(n) {
 }
 
 function divisors(n) {
-	var divisors = [1, n];
+	var divisors = [],
+		//step = 1 + n % 2,
+		stop = Math.floor(Math.sqrt(n));
 	
-	for(var i = 2; i < n; i++) {
+	for(var i = 1; i <= stop; i++){
 		if (divisibleBy(n, i)) {
 			divisors.push(i);
+			divisors.push(n / i);
 		}
 	}
 	return divisors;
 }
+
 function properDivisorsOf(n) {
-	return range(1, n).filter(function(i) {
+	return range(0, n).filter(function(i) {
 		return divisibleBy(n, i);
 	});
+}
+
+function isPerfectNumber(n) {
+	return n === properDivisorsOf(n).reduce(add);
+}
+
+function deficient(n) {
+	return properDivisorsOf(n)
+		.reduce(add, 0) < n;
+}
+
+function abundant(n) {
+	return properDivisorsOf(n)
+		.reduce(add, 0) > n;
 }
 
 function isEven(x) {
@@ -171,13 +189,20 @@ function isAmicableNumber(n) {
 	return b == n && a !== b;
 }
 
-function delay(f, ms) {
-	return setTimeout(f, ms);
+function isPandigital(n) {
+	n = n.toString();
+
+	return n.length === 9 
+		&& range(1, 10).every(indexOf.bind(null, n));
 }
+
+function indexOf(haystack, needle) {
+	return haystack.indexOf(needle) >= 0;
+}
+
 
 module.exports = {
 	range: range,
-	delay: delay,
 	
 	divisibleBy: divisibleBy,
 	divisibleBySome: divisibleBySome,
@@ -185,6 +210,9 @@ module.exports = {
 	divisors: divisors,
 	numDivisors: numDivisors,
 	properDivisorsOf: properDivisorsOf,
+	isPerfectNumber: isPerfectNumber,
+	 ficient: deficient,
+	abundant: abundant,
 
 	isEven: isEven,
 	isOdd: isOdd,
@@ -204,6 +232,8 @@ module.exports = {
 	primeNumber: primeNumber,
 	product: product,
 	isAmicableNumber: isAmicableNumber,
+	isPandigital: isPandigital,
+	indexOf: indexOf,
 
 	isPythagoreanTriplet: isPythagoreanTriplet,
 };
