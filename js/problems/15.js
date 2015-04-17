@@ -14,20 +14,25 @@ var math = require('../libs/math'),
 	euler = require('../libs/euler');
 
 (function solve(width, height) {
-	var result = path(width, height, 0);
+	var result = path(width, height);
 
 	euler.answer(result);
 
-}(width, height));
+}(20, 20));
 
-function path(y, x, times) {
-    if (y === 0 && x === 0) 
-        return times + 1;
+
+function path(y, x) {
+    var cache = {}
     
-    if (y > 0) 
-        times = path(y - 1, x, times);
+    function cached(y, x) {
+        var k = y + '-' + x;
     
-    if (x > 0) 
-        times = path(y, x - 1, times);
-    return times;
+        if (x === 0 && y === 0) { return 1; }
+        if (x === -1 || y === -1) return 0;
+        if(cache[k]) return cache[k]; 
+
+        cache[k] = cached(y - 1, x) + cached(y, x - 1);
+        return cache[k];
+    };
+    return cached(y, x);
 }
