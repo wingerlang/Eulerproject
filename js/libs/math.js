@@ -14,14 +14,18 @@ function range(start, stop, step) {
 	return numberRange;
 }
 
+function isNumber(a) {
+	return typeof a === 'number' && !isNaN(a);
+}
+
 function max(a, b) {
 	if (Array.isArray(a)) {
-		if (typeof b == 'number') {
+		if (isNumber(b)) {
 			return maxNumber(maxArray(a), b)
 		} else {
 			return maxArray(a);
 		}
-	} else if (typeof a == 'number' && typeof b == 'number') {
+	} else if ([a,b].every(isNumber)) {
 		return maxNumber(a, b);
 	}
 	else {
@@ -66,7 +70,6 @@ function numDivisors(n) {
 
 function divisors(n) {
 	var divisors = [],
-		//step = 1 + n % 2,
 		stop = Math.floor(Math.sqrt(n));
 	
 	for(var i = 1; i <= stop; i++){
@@ -85,7 +88,8 @@ function properDivisorsOf(n) {
 }
 
 function isPerfectNumber(n) {
-	return n === properDivisorsOf(n).reduce(add);
+	return n === properDivisorsOf(n)
+		.reduce(add);
 }
 
 function deficient(n) {
@@ -102,7 +106,7 @@ function isEven(x) {
 	return x % 2 === 0;
 }
 function isOdd(x) {
-	return x % 2 === 1;
+	return !isEven(x);
 }
 
 function add(a, b) {
@@ -112,7 +116,7 @@ function times(a, b) {
 	return a * b;
 }
 function double(n) {
-	return n * 2;
+	return times(n, 2);
 }
 
 function product(numbers) {
@@ -129,7 +133,9 @@ function pow2(n) {
 }
 
 function digits(n) {
-	return n.toString().split('').map(Number);
+	return n.toString()
+		.split('')
+		.map(Number);
 }
 
 function equals(a, b) {
@@ -151,7 +157,7 @@ function isPrime(n) {
 	if (n < 2) return false;
 	if (n === 2) return true;
 
-	var stop = ceil_sqrt(n);
+	var stop = floor_sqrt(n);
 	for(var divisor = 2; divisor <= stop; divisor++) {
 		if (divisibleBy(n, divisor)) {
 			return false;
@@ -162,7 +168,7 @@ function isPrime(n) {
 
 function primeFactors(n) {
 	var factors = [],
-		stop = ceil_sqrt(n);
+		stop = floor_sqrt(n);
 
 	for(var i = 2; i <= stop; i++ ) {
 		while(divisibleBy(n, i)) {
@@ -197,11 +203,12 @@ function isAmicableNumber(n) {
 	return b == n && a !== b;
 }
 
-function isPandigital(n) {
+function isPandigital(n, upTo) {
 	n = n.toString();
+	upTo = upTo || 9
 
-	return n.length === 9 
-		&& range(1, 10).every(indexOf.bind(null, n));
+	return n.length === upTo 
+		&& range(1, upTo+1).every(indexOf.bind(null, n));
 }
 
 function indexOf(haystack, needle) {

@@ -4,7 +4,7 @@ function isPalindrome_slow(s) {
 	return s === s.split("").reverse().join("");
 }
 
-function isPalindrome_optimized(s) {
+function isPalindrome(s) {
     var start = 0, stop = s.length-1;
         
     while(start < stop) {
@@ -27,7 +27,7 @@ function isPermutation(a, b) {
 
 
 function isPalindromeNumber(n) {
-	return isPalindrome_optimized(n.toString());
+	return isPalindrome(n.toString());
 }
 
 function reverse(n) {
@@ -39,7 +39,7 @@ function reverse(n) {
 }
 
 module.exports = {
-	isPalindrome: isPalindrome_optimized,
+	isPalindrome: isPalindrome,
 	isPalindromeNumber: isPalindromeNumber,
 	reverse: reverse,
 

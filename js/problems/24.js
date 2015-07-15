@@ -24,7 +24,6 @@ var utils = require('./utils');
 	generate all permutations that start with 1
 	generate all permutations that start with 2
 
-
 */
 
 var numbers = "012";

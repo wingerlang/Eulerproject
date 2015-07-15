@@ -23,8 +23,7 @@ var math = require('../libs/math'),
 function findSum(num) {
 	var found = 0,
 		sum = 0,
-		n = 8,
-		cache = {};
+		n = 8;
 
 	while( found < num) {
 		if(isTruncatablePrime(n)) {
